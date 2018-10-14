@@ -1,0 +1,90 @@
+<div class="form-container mb-5 pb-5">
+	<!-- [hidden] = "success" -->
+	<form [formGroup] = "addInstituteForm" (ngSubmit) = "submitHandler()" [hidden] = "success">
+		<h3><strong>Edit Institute:</strong></h3>
+		<hr>
+		<h4>Name:</h4>
+		<mat-form-field class="full">
+			<input matInput placeholder="Institute Name" formControlName="instituteName">
+			<mat-error *ngIf = "checkInstituteName.invalid && checkInstituteName.touched">
+				Institute Name is Required.
+			</mat-error>
+		</mat-form-field>
+		<h4>Address:</h4>
+		<div formGroupName = "address">
+			<mat-form-field class="full">
+				<input matInput placeholder="Address Line 1" formControlName="line1">
+				<mat-error *ngIf = "checkAddressLine.invalid && checkAddressLine.touched">
+					Line 1 Address Required.
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="full">
+				<input matInput placeholder="Address Line 2" formControlName="line2">
+			</mat-form-field>
+			<mat-form-field class="half">
+				<input matInput placeholder="City" formControlName="city">
+				<mat-error *ngIf = "checkAddressCity.hasError('required') && checkAddressCity.touched">
+					Institute City is Required.
+				</mat-error>
+				<mat-error *ngIf = "checkAddressCity.hasError('pattern') && checkAddressCity.touched">
+					Enter Valid City.
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="half">
+				<input matInput placeholder="State" formControlName="state">
+				<mat-error *ngIf = "checkAddressState.hasError('required') && checkAddressState.touched">
+					Institute State is Required.
+				</mat-error>
+				<mat-error *ngIf = "checkAddressState.hasError('pattern') && checkAddressState.touched">
+					Enter Valid State.
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field class="half">
+				<input matInput placeholder="Landmark" formControlName="locality">
+			</mat-form-field>
+			<mat-form-field class="half">
+				<input matInput placeholder="Pincode" formControlName="pincode">
+				<mat-error *ngIf = "checkAddressPinCode.hasError('pattern') && checkAddressPinCode.touched">
+					Enter Valid PIN Code.
+				</mat-error>
+				<mat-error *ngIf = "checkAddressPinCode.hasError('required') && checkAddressPinCode.touched">
+					PIN Code Required.
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<div formArrayName = "contacts">
+			<div *ngFor = "let contact of contactForm.controls; index as i" [formGroupName] = "i">
+
+				<mat-form-field class="half">
+					<input matInput placeholder="Name" formControlName="name">
+					<mat-error *ngIf = "contact.controls.name.hasError('required') && contact.controls.name.touched">
+						Contact Name is Required.
+					</mat-error>
+				</mat-form-field>
+				<mat-form-field class="contact">
+					<input matInput placeholder="Contact Number" formControlName="contact">
+					<mat-error *ngIf = "contact.controls.contact.hasError('required') && contact.controls.contact.touched">
+						Contact Number is Required.
+					</mat-error>
+					<mat-error *ngIf = "contact.controls.contact.hasError('pattern') && contact.controls.contact.touched">
+						Contact Number Can Only Have Digits.
+					</mat-error>
+				</mat-form-field>
+
+				<button type="button" *ngIf= "i > 0" mat-mini-fab color="warn" (click) = "deleteContact(i)"><i class="fa fa-trash fa-lg"></i></button>
+
+			</div>	
+		</div>
+		<button mat-raised-button color="primary" type="button" (click) = "addContact()" class="mt-3"><i class="fa fa-plus"></i> Add Contact Details</button><br>
+		<div class="mt-5">
+			<button mat-raised-button color="primary" [disabled]="addInstituteForm.invalid" type="Submit" class="mr-5">Submit</button>
+			<button mat-raised-button color="warn" type="Reset" class="ml-5">Reset</button>
+		</div>
+	</form>
+	<div *ngIf="success" class="form-success">
+		<i class="fa fa-check-circle-o size"></i>
+		<p class="size-text">Institute Updated Successfully</p>
+		<a routerLink = "/listinstitute" mat-raised-button color="primary" class="ml-5">View</a>
+	</div>
+</div>

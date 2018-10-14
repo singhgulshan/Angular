@@ -1,0 +1,22 @@
+<div class="p-3">
+	<h3><i class="fa fa-graduation-cap fa-lg"> {{institute?.instituteName}}</i></h3><br>
+	<h4><i class="material-icons md">location_on</i> <i class="fa fa-lg">Address:</i></h4>
+	<address>
+		<i>
+			<p>
+				{{institute?.address.line1}} <span *ngIf="institute.address.line2 != ''">, {{institute?.address.line2}}</span>, {{institute?.address.city}}, {{institute?.address.state}}, PIN: {{institute?.address.pincode}}<span *ngIf="institute.address.locality != ''">, <strong>Landmark:</strong> {{institute?.address.locality}}</span>
+			</p>
+		</i>
+	</address>
+	<h4><i class="fa fa-address-card-o fa-lg"> Contacts:</i></h4>
+	<table mdbTable borderless="true" small="true" w-auto>
+		<tr mdbTableCol *ngFor = "let detail of institute.contacts; index as i">
+			<th scope="row">{{i+1}}</th>
+			<td>{{detail?.name}}</td>
+			<td>{{detail?.contact}}</td>
+		</tr>
+	</table>
+
+	<a [routerLink] = "['/editinstitute',index]" mat-raised-button color="primary" class="ml-5">Edit</a>
+
+</div>

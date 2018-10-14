@@ -1,0 +1,8 @@
+<h1 mat-dialog-title><i class="material-icons">delete_forever</i>Alert</h1>
+<div mat-dialog-content>
+  <p>Are you sure you want to delete {{data.name}}</p>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-button (click)="onNoClick()">No Thanks</button>
+  <button type="button" mat-button [mat-dialog-close]="data.index" cdkFocusInitial>Yeah Sure</button>
+</div>

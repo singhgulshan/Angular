@@ -1,0 +1,28 @@
+<mat-toolbar color="primary" class="mat-elevation-z2">
+  <button mat-icon-button #btnSideNavToggle (click)="sideNav.toggle()" fxHide.gt-sm>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>{{location}}</span>
+</mat-toolbar>
+<mat-sidenav-container>
+  <mat-sidenav #sideNav align="start" mode="{{navMode}}" opened="true" class="mat-elevation-z1">
+    <!-- sidenav content -->
+    <mat-nav-list>
+      <mat-accordion>
+        <a mat-list-item routerLink='/home'>
+          <mat-icon mat-list-icon>home</mat-icon><span mat-line>Home</span></a>
+        <a mat-list-item routerLink='/addinstitute'>
+          <mat-icon mat-list-icon>add_circle</mat-icon><span mat-line>Add Institute</span></a>
+        <a mat-list-item routerLink = '/listinstitute'>
+          <mat-icon mat-list-icon>format_list_numbered</mat-icon><span mat-line>List Institute</span></a>
+      </mat-accordion>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="md-sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+  <!-- router content -->
+ <!--  <div class="content">
+        <router-outlet></router-outlet>    
+  </div> -->
+</mat-sidenav-container>

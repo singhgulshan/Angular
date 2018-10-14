@@ -1,0 +1,46 @@
+.full {
+	width: 100%;
+}
+
+.form-container {
+	min-width: 150px;
+ 	max-width: 700px;
+ 	width: 100%;
+ 	padding: 10px;
+}
+
+.half{
+	width:50%;
+	padding-right: 10px;
+}
+
+.contact{
+	width: 30%;
+	padding-right: 10px;
+}
+
+.form-success {
+	text-align: center;
+}
+
+.size {
+	font-size: 20em;
+	color: green;
+}
+
+.size-text{
+	font-size: 3em;
+	color: green;
+}
+
+@media only screen and (max-width: 600px) {
+
+	.size{
+		font-size: 15em;
+	}
+
+	.size-text{
+	font-size: 2em;
+}
+
+}

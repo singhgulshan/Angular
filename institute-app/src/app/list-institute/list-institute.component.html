@@ -1,0 +1,17 @@
+<div class="ml-2 mr-2 mb-5 pb-5">
+<table mdbTable hover="true">
+  <thead>
+    <tr>
+      <th scope="col">Sr. No.</th>
+      <th scope="col">Institute Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let institute of data; index as i">
+      <th scope="row">{{i+1}}</th>
+      <td><a [routerLink]="['/viewinstitute',i]">{{institute.instituteName}}</a></td>
+      <td><button mat-raised-button color="warn" type="button" (click) = "openDialog(i)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
